@@ -1,3 +1,3 @@
 # Actions
 
-![logs](https://github.com/ryuichi1208/Actions/image/actions_log.png)
+![logs](https://github.com/ryuichi1208/Actions/blob/master/image/actions_log.png)
