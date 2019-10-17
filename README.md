@@ -1,4 +1,5 @@
 ![Py](https://img.shields.io/badge/Python-3.6%2F3.7-yellowgreen)
+![Lisence](https://img.shields.io/github/license/ryuichi1208/py-dep-kun)
 ![CI](https://github.com/ryuichi1208/Actions/workflows/Python%20application/badge.svg)
 
 ## Project Title
