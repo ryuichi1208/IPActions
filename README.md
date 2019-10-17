@@ -1,3 +1,6 @@
+![Py](https://img.shields.io/badge/Python-3.6%2F3.7-yellowgreen)
+![CI](https://github.com/ryuichi1208/Actions/workflows/Python%20application/badge.svg)
+
 ## Project Title
 
 ![logs](https://github.com/ryuichi1208/Actions/blob/master/image/actions_log.png)
