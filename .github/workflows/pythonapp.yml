@@ -12,7 +12,7 @@ on:
 jobs:
   build:
     name: actions-ci
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v1
     - name: Set up Python 3.7
@@ -27,4 +27,5 @@ jobs:
         pip -V && pip list
     - name: Docker setup
       run: |
-        docker --version
+        docker version
+        docker-compose version
