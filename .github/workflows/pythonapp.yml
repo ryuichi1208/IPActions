@@ -1,0 +1,28 @@
+name: Python application
+
+on: 
+  push:
+    branches: 
+      - master
+      - develop
+    tags:
+      - v1
+      - v1.*
+
+jobs:
+  build:
+    name: actions-ci
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Install dependencies
+      run: |
+        pwd && ls -lRt && uname -r
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip -V && pip list
