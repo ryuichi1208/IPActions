@@ -30,7 +30,7 @@ $ make test && sudo make install
 
 ## Authors
 
-[ryuichi1208](https://github.com/ryuichi1208)
+* [ryuichi1208](https://github.com/ryuichi1208)
 
 ## References
 
