@@ -13,7 +13,6 @@ jobs:
   build:
     name: actions-ci
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v1
     - name: Set up Python 3.7
@@ -26,3 +25,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip -V && pip list
+    - name: Docker setup
+      run: |
+        docker --version
