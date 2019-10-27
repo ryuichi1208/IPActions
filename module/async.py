@@ -1,0 +1,17 @@
+import grequests
+
+urls = [
+    'http://www.heroku.com',
+    'http://python-tablib.org',
+    'http://httpbin.org',
+    'http://python-requests.org',
+    'http://fakedomain/',
+    'http://kennethreitz.com'
+]
+
+rs = (grequests.get(u) for u in urls)
+
+print(grequests.map(rs))
+
+import multiprocessing
+print(multiprocessing.cpu_count())
