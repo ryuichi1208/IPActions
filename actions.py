@@ -11,7 +11,7 @@ import platform
 
 def usage(msg: str):
     """
-    エラー関連(とりあえず全部ここ？)
+    Command usage
     """
     print(f"{msg}")
     print(f"Usage : {os.path.basename(__file__)} IPAddress Subnetmask")
@@ -19,9 +19,11 @@ def usage(msg: str):
 
 
 @functools.lru_cache(maxsize=128)
-def ipaddr_to_bin(num: str, t:int) -> list:
+def ipaddr_to_bin(num: str, t: int) -> list:
     """
-    IPアドレスの各オクテットを指定された進数へ変換する
+    Receives an IP address as a character string,
+    converts it to a decimal number received as
+    an argument for each octet, and returns it as a list.
     """
     if num.count(".") != 3:
         usage("invalid arguments")
@@ -38,7 +40,7 @@ def ipaddr_to_bin(num: str, t:int) -> list:
 
 def calc_network_address(*iplist):
     """
-    ネットワークアドレスを計算する
+    Calculate network address and standard output
     """
     L = [".", ".", ".", "\n"]
     print("Network Address : ", end="")
@@ -48,7 +50,7 @@ def calc_network_address(*iplist):
 
 def calc_broad_cast_address(*iplist):
     """
-    ブロードキャストアドレスを計算する
+    Calculate broadcast address and standard output
     """
     L = [".", ".", ".", "\n"]
     print("BroadCast Address : ", end="")
@@ -68,14 +70,16 @@ def calc_broad_cast_address(*iplist):
 
 def calc_host_nums(netmask):
     """
-    アドレス数とホスト数を算出
+    Calculates the number of possible IP addresses and the number
+    of hosts and returns an int type number.
     """
     return 2 ** sum([i.count("0") for i in netmask])
 
 
 def opt_parse(args: list) -> tuple:
     """
-    オプション解析処理
+    Parse options received from CLI and return in array
+    Subnet mask / cider notation is also performed without function
     """
     if len(args) == 3:
         pass
@@ -84,7 +88,27 @@ def opt_parse(args: list) -> tuple:
     else:
         usage("invalid arguments")
 
-    return args[1], args[2]
+    if "-i" in args or "--interactive" in args:
+        ip, subnet = map(str, input().split())
+    elif "." not in args[2] or "/" in args[2]:
+        ip = args[1]
+        subnet = args[2].replace("/", "", 2)
+        subnet = "".join(["1" for i in range(int(subnet))])
+        subnet = subnet + "".join(["0" for i in range(32 - len(subnet))])
+        subnet = (
+            str(int(subnet[0:8], 2))
+            + "."
+            + str(int(subnet[8:16], 2))
+            + "."
+            + str(int(subnet[16:24], 2))
+            + "."
+            + str(int(subnet[24:32], 2))
+        )
+    else:
+        ip = args[1]
+        subnet = args[2]
+
+    return args[1], subnet
 
 
 def calc_ip_class_type(ipaddr):
