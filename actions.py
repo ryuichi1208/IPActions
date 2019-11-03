@@ -7,6 +7,7 @@ import os
 import sys
 import pprint
 import platform
+import nslookup
 
 
 def usage(msg: str):
@@ -68,7 +69,7 @@ def calc_broad_cast_address(*iplist):
             print(int(iplist[0][i], 2), end=L[i])
 
 
-def calc_host_nums(netmask):
+def calc_host_nums(netmask: str) -> int:
     """
     Calculates the number of possible IP addresses and the number
     of hosts and returns an int type number.
@@ -84,12 +85,16 @@ def opt_parse(args: list) -> tuple:
     if len(args) == 3:
         pass
     elif platform.system() == "Darwin":
-        print("mac")
+        # print("mac")
+        pass
     else:
         usage("invalid arguments")
 
     if "-i" in args or "--interactive" in args:
         ip, subnet = map(str, input().split())
+    elif "-m" in args:
+        nslookup.foward_lookup_name(args[2])
+        sys.exit(0)
     elif "." not in args[2] or "/" in args[2]:
         ip = args[1]
         subnet = args[2].replace("/", "", 2)
@@ -111,7 +116,7 @@ def opt_parse(args: list) -> tuple:
     return args[1], subnet
 
 
-def calc_ip_class_type(ipaddr):
+def calc_ip_class_type(ipaddr: str) -> str:
     return (
         "C"
         if ipaddr.split(".")[0] == "192"
@@ -144,5 +149,5 @@ IP/Host nums       : {hnums} / {hnums-2}
 
 
 if __name__ == "__main__":
-    args = sys.argv
+    args = sys.argv if len(sys.argv) > 2 else usage("Invalid args")
     main(args)
