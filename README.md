@@ -8,11 +8,31 @@
 
 ## Description
 
+IPActions is a tool for calculating network addresses and broadcast addresses from specified IP addresses.
+
 ## Features
 
-## Demo
+* Network class calculation
+* Network address calculation
+* Broadcast address calculation
+* Calculate the number of possible hosts
 
-T.B.D
+## Tutorial
+
+``` bash
+# IP addresses => network addresses / broadcast addresses
+$ python3 actions.py 192.168.1.0 /24
+
+IP Address Bin/Hex : ['11000000', '10101000', '00000001', '00000000'] ['c0', 'a8', '01', '00']
+SubnetMask Bin/Hex : ['11111111', '11111111', '11111111', '00000000'] ['ff', 'ff', 'ff', '00']
+Class              : C
+IP Address         : 192.168.1.0
+SubnetMask         : 255.255.255.0 (cidr:24)
+IP/Host nums       : 256 / 254
+
+Network Address : 192.168.1.0
+BroadCast Address : 192.168.1.255
+```
 
 ## Requirement
 
