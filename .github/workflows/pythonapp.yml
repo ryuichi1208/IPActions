@@ -34,4 +34,4 @@ jobs:
       run: |
         pytest --version
         pytest -vv
-        pytest -vv --com=.
+        pytest -vv --cov=.
