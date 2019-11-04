@@ -10,6 +10,15 @@ import platform
 import nslookup
 
 
+def block_info():
+    """
+    Command lib version
+    """
+    print("Python", platform.python_version())
+    print("numpy", numpy.__version__)
+    sys.exit(0)
+
+
 def usage(msg: str):
     """
     Command usage
@@ -82,7 +91,7 @@ def opt_parse(args: list) -> tuple:
     Parse options received from CLI and return in array
     Subnet mask / cider notation is also performed without function
     """
-    if len(args) == 3:
+    if len(args) >= 1:
         pass
     elif platform.system() == "Darwin":
         # print("mac")
@@ -95,6 +104,8 @@ def opt_parse(args: list) -> tuple:
     elif "-m" in args:
         nslookup.foward_lookup_name(args[2])
         sys.exit(0)
+    elif "-b" in args:
+        block_info()
     elif "." not in args[2] or "/" in args[2]:
         ip = args[1]
         subnet = args[2].replace("/", "", 2)
@@ -149,5 +160,5 @@ IP/Host nums       : {hnums} / {hnums-2}
 
 
 if __name__ == "__main__":
-    args = sys.argv if len(sys.argv) > 2 else usage("Invalid args")
+    args = sys.argv if len(sys.argv) >= 1 else usage("Invalid args")
     main(args)

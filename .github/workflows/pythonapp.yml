@@ -1,8 +1,8 @@
 name: Python application
 
-on: 
+on:
   push:
-    branches: 
+    branches:
       - master
       - develop
     tags:
@@ -21,6 +21,7 @@ jobs:
         python-version: 3.7
     - name: Install dependencies
       run: |
+        python -V
         pwd && ls -lRt && uname -r
         python -m pip install --upgrade pip
         pip install -r requirements.txt
@@ -29,3 +30,8 @@ jobs:
       run: |
         docker version
         docker-compose version
+    - name: Exec Pytest
+      run: |
+        pytest --version
+        pytest -vv
+        pytest -vv --com=.
