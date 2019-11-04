@@ -140,7 +140,6 @@ def calc_ip_class_type(ipaddr: str) -> str:
 
 
 def main(args: list):
-
     ipaddr, netmask = opt_parse(args)
 
     hnums = calc_host_nums(ipaddr_to_bin(netmask, 2))
