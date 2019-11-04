@@ -12,9 +12,11 @@ on:
 jobs:
   build:
     name: actions-ci
-    runs-on: ubuntu-18.04
+    # runs-on: ubuntu-18.04
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        os: ['ubuntu-16.04', 'ubuntu-18.04']
         python: ['3.5','3.6','3.7']
     steps:
     - uses: actions/checkout@v1
@@ -29,6 +31,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip -V && pip list
+        ./script/info.sh
     - name: Docker setup
       run: |
         docker version
