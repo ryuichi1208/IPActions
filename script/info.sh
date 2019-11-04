@@ -30,5 +30,11 @@ ls -l .
 echo -e "\n##### docker version #####"
 docker version
 
+echo -e "\n##### Python -V #####"
+python -V
+
+echo -e "\n##### pip -V #####"
+pip -V && pip list
+
 # echo -e "\n##### docker-compose version #####"
 # docker-compose version

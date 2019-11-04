@@ -26,11 +26,8 @@ jobs:
         python-version: ${{ matrix.python }}
     - name: Install dependencies
       run: |
-        python -V
-        pwd && ls -lRt && uname -r
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip -V && pip list
         ./script/info.sh
     - name: Docker setup
       run: |
