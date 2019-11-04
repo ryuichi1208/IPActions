@@ -37,6 +37,11 @@ jobs:
         pytest --version
         pytest -vv
         pytest -vv --cov=.
+        pytest -vv --cov=. --cov-report=html
+    - uses: actions/upload-artifact@master
+      with:
+        name: coverage
+        path: htmlcov
     - name: Exec mypy
       run: |
         mypy actions.py || echo $0 ; echo $?
